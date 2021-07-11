@@ -1,6 +1,3 @@
-//
-// Created by develop on 10.07.21.
-//
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdbool.h>
@@ -17,8 +14,9 @@ TransactionListNode *new__Transaction_Node(Transaction transaction) {
 }
 
 void printTransaction(Transaction transaction) {
-    printf("Transaction(Rechtstraeger: %s, Quartal: %d, Bekanntgabe: %d, Medieninhaber: %s, Euro: %.2f)"
-            , transaction.rechtstraeger, transaction.quartal, transaction.bekanntgabe, transaction.medieninhaber, transaction.euro);
+    printf("Transaction(Rechtstraeger: %s, Quartal: %d, Bekanntgabe: %d, Medieninhaber: %s, Euro: %.2f)",
+           transaction.rechtstraeger, transaction.quartal, transaction.bekanntgabe,
+           transaction.medieninhaber, transaction.euro);
 }
 
 void printTransactionList(TransactionList *list) {
@@ -37,27 +35,6 @@ TransactionList *new__TransactionList() {
     result->end = NULL;
     result->length = 0;
     return result;
-}
-
-void freeTransaction(Transaction *transaction) {
-    free(transaction->rechtstraeger);
-    free(transaction->medieninhaber);
-    transaction->euro = 0;
-    transaction->quartal = 0;
-    transaction->bekanntgabe = 0;
-    free(transaction);
-}
-
-void freeTransactionNode(TransactionListNode *node) {
-    freeTransaction(&node->transaction);
-    free(node);
-}
-
-void freeTransactionList(TransactionList *list) {
-    ForEach(node, list) {
-        freeTransactionNode(node);
-    }
-    free(list);
 }
 
 void appendTransaction(TransactionList *list, Transaction transaction) {

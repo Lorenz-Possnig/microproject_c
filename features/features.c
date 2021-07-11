@@ -45,6 +45,7 @@ void payersOrRecipients(TransactionList *list, bool (contains)(TransactionList*,
     printf("Printing %d %s:\n", withoutDuplicates->length, por);
     ForEach(node, withoutDuplicates) {
         printf("\t%s\n", extractor(node));
+        free(node);
     }
     free(withoutDuplicates);
 }
@@ -67,6 +68,7 @@ void quarters(TransactionList *list) {
     printf("%d quarters loaded:\n", uniqueQuarters->length);
     ForEach(node, uniqueQuarters) {
         printf("\t%d\n", node->transaction.quartal);
+        free(node);
     }
     free(uniqueQuarters);
 }
@@ -100,7 +102,11 @@ void top(TransactionList *list, int amount, int paragraph, char *por, char *(ext
         printf("\t%s - %.2f€\n", node->transaction.rechtstraeger, node->transaction.euro);
         i++;
     }
+    ForEach(node, summed)
+        free(node);
     free(summed);
+    ForEach(node, filteredByParagraph)
+        free(node);
     free(filteredByParagraph);
 }
 
@@ -138,7 +144,11 @@ void search(TransactionList *list, char *searchTerm, char *(extractor)(Transacti
     ForEach(node, matches) {
         printf("\t%s\n", extractor(node));
     }
+    ForEach(node, matches)
+        free(node);
     free(matches);
+    ForEach(node, deduplicated)
+        free(node);
     free(deduplicated);
 }
 
@@ -181,7 +191,6 @@ void details(TransactionList *list, char* organization, char *(extractor)(Transa
         if (strcmp(organization, extractedCopy) == 0) {
             appendTransaction(paymentsOfOrg, node->transaction);
         }
-        //free(extractedCopy);
     }
     // group them by bekanntgabe
     TransactionList *p2 = new__TransactionList();
@@ -219,13 +228,27 @@ void details(TransactionList *list, char* organization, char *(extractor)(Transa
     printDetails(p4Summed, reverseExtractor);
     printf("Payments according to §31:\n");
     printDetails(p31Summed, reverseExtractor);
-    
+
+    ForEach(node, paymentsOfOrg)
+        free(node);
     free(paymentsOfOrg);
+    ForEach(node, p2)
+        free(node);
     free(p2);
+    ForEach(node, p4)
+        free(node);
     free(p4);
+    ForEach(node, p31)
+        free(node);
     free(p31);
+    ForEach(node, p2Summed)
+        free(node);
     free(p2Summed);
+    ForEach(node, p4Summed)
+        free(node);
     free(p4Summed);
+    ForEach(node, p31Summed)
+        free(node);
     free(p31Summed);
 }
 

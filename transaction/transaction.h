@@ -1,7 +1,3 @@
-//
-// Created by develop on 10.07.21.
-//
-
 #ifndef MICROPROJECT_TRANSACTION_H
 #define MICROPROJECT_TRANSACTION_H
 
@@ -33,10 +29,6 @@ void printTransaction(Transaction);
 void printTransactionList(TransactionList*);
 
 TransactionList *new__TransactionList();
-
-void freeTransactionNode(TransactionListNode*);
-
-void freeTransactionList(TransactionList*);
 
 void appendTransaction(TransactionList*, Transaction);
 
