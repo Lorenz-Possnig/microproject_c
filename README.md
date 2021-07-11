@@ -1,6 +1,6 @@
 # microproject_c
 
-The microproject from the Course "Informatik für InformationsmanagerInnen 2" rewritten in Nim
+The microproject from the Course "Informatik für InformationsmanagerInnen 2" rewritten in C.
 
 A command-line application that allows to run simple queries against a quarterly published data set on media transparency
 
