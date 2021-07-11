@@ -282,6 +282,7 @@ int main() {
             } else {
                 printf("Wrong syntax for command search\n");
             }
+            free(organization);
         } else {
             printf("Unrecognized command\n");
         }
